@@ -1,7 +1,7 @@
 import User from '../models/User.js';
 
 async function getUserById(req, res) {
-    const userId = req.params.id;
+    const userId = req.params.userId; 
 
     try {
         const user = await User.findById(userId).select('-password');
@@ -18,11 +18,15 @@ async function getUserById(req, res) {
 }
 
 async function updateUser(req, res) {
-    const userId = req.params.id;
+    const userId = req.params.userId;
     const updateFields = req.body; 
 
     try {
-        const user = await User.findByIdAndUpdate(userId, updateFields, { new: true });
+        const user = await User.findByIdAndUpdate(
+            userId,
+            updateFields,
+            { new: true, select: '-password' }
+        );
 
         if (!user) {
             return res.status(404).json({ msg: 'Usuário não encontrado.' });
@@ -35,7 +39,7 @@ async function updateUser(req, res) {
 }
 
 async function deleteUser(req, res) {
-    const userId = req.params.id; 
+    const userId = req.params.userId; 
     try {
         const deletedUser = await User.findByIdAndDelete(userId);
 
@@ -48,5 +52,6 @@ async function deleteUser(req, res) {
         res.status(500).json({ msg: 'Erro ao deletar usuário.' });
     }
 }
+
 
 export default { getUserById, updateUser, deleteUser };

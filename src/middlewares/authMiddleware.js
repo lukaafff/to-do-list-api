@@ -15,8 +15,8 @@ function checkToken(req, res, next) {
         const userIdFromToken = decoded.id;
         const requestedUserId = req.params.userId;
         
-        /* console.log('userIdFromToken:', userIdFromToken);
-        console.log('requestedUserId:', requestedUserId); */
+         /* console.log('userIdFromToken:', userIdFromToken);
+        console.log('requestedUserId:', requestedUserId);  */
 
         if (userIdFromToken !== requestedUserId) {
             return res.status(403).json({ msg: 'Acesso negado: Token inválido para este usuário.' });
@@ -30,3 +30,4 @@ function checkToken(req, res, next) {
 }
 
 export default checkToken;
+
