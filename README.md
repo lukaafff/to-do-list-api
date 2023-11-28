@@ -131,7 +131,14 @@ Para acessar as rotas da API, é necessário enviar um token JWT no cabeçalho A
 **Exemplo de Resposta:**
 ```
 {
-    "msg": "Dados do usuário atualizados com sucesso!"
+    "msg": "Dados do usuário atualizados com sucesso!",
+    "user": {
+        "_id": "656667b4b1ed9ca5efde2fe9",
+        "name": "Maria",
+        "lastName": "Maria",
+        "email": "maria@gmail.com",
+        "__v": 0
+    }
 }
 ```
 
